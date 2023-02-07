@@ -38,8 +38,7 @@ let decrease = () => {
     }
     if (value === 0) {
         disableDecrement ();
-    }
-    
+    } 
 }
 
 increment.addEventListener ("click", increase);
