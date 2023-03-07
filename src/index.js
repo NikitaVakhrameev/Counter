@@ -1,43 +1,46 @@
 const increment = document.querySelector(".increment");
 const decrement = document.querySelector(".decrement");
 const counter = document.querySelector(".counter");
+
 let value = 0;
 
-let disableIncrement = () => {
-    increment.disabled = true;
-    increment.classList.remove('button');
-    increment.classList.add('button__disabled');
+const classToggling = (el) =>{
+  if(el.disabled){
+      el.classList.remove('button');
+      el.classList.add('button__disabled');
+  } else {
+      el.classList.add('button');
+      el.classList.remove('button__disabled');
+  }
 };
 
-let disableDecrement = () => {
-    decrement.disabled = true;
-    decrement.classList.remove('button');
-    decrement.classList.add('button__disabled');
-};
+decrement.disabled = true;
+classToggling(decrement);
 
-let increase = () => {
+const increase = () => {
     decrement.disabled = false;
-    decrement.classList.add('button');
-    decrement.classList.remove('button__disabled');
+    classToggling(decrement);
     value += 1;
     counter.textContent = value;
     if (value === 20) {
-        disableIncrement ();
+       increment.disabled = true; 
+       classToggling(increment);
     }
 };
 
-let decrease = () => {
+const decrease = () => {
     increment.disabled = false;
-    increment.classList.add('button');
-    increment.classList.remove('button__disabled');
+    classToggling(increment);
     if(value === 0) {
-        disableDecrement ();
+        decrement.disabled = true;
+        classToggling (decrement);
     } else {
         value -= 1;
         counter.textContent = value;
     }
     if (value === 0) {
-        disableDecrement ();
+        decrement.disabled = true;
+        classToggling (decrement);
     } 
 };
 
