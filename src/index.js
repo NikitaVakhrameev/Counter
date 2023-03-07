@@ -4,6 +4,7 @@ const counter = document.querySelector(".counter");
 
 let value = 0;
 
+
 const classToggling = (el) =>{
   if(el.disabled){
       el.classList.remove('button');
@@ -14,8 +15,11 @@ const classToggling = (el) =>{
   }
 };
 
-decrement.disabled = true;
-classToggling(decrement);
+if(value === 0) {
+  decrement.disabled = true;
+  classToggling(decrement);
+}
+
 
 const increase = () => {
     decrement.disabled = false;
@@ -31,13 +35,8 @@ const increase = () => {
 const decrease = () => {
     increment.disabled = false;
     classToggling(increment);
-    if(value === 0) {
-        decrement.disabled = true;
-        classToggling (decrement);
-    } else {
-        value -= 1;
-        counter.textContent = value;
-    }
+    value -= 1;
+    counter.textContent = value;
     if (value === 0) {
         decrement.disabled = true;
         classToggling (decrement);
